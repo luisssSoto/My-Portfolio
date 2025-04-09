@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Form</title>
+</head>
+<body>
+    <header>
+        <%- include("partials/header.ejs") %>
+    </header>
+    <h1>Creating Form</h1>
+    <form id="postForm" action="/submit" method="POST">
+        <input type="radio" id="comic" name="section" value="Comic">
+        <label for="comic">Comic</label>
+        <br><br>
+        <input type="radio" id="manga" name="section" value="Manga">
+        <label for="manga">Manga</label>
+        <br><br>
+        <input type="radio" id="videogame" name="section" value="Videogame">
+        <label for="videogame">Videogame</label>
+        <br><br>
+        <input type="text" name="postTitle" placeholder="Title">
+        <br><br>
+        <textarea name="postDescription" rows="10" cols="50" placeholder="
+        Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. 
+        De carne lumbering animata corpora quaeritis.
+        Summus brains sit​​, morbo vel maleficia?
+        De apocalypsi gorger omero undead survivor dictum mauris. 
+        Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.&#10;&#10;
+        Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
+        The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
+        Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
+        Nescio brains an Undead zombies. 
+        Sicut malus putrid voodoo horror.
+        Nigh tofth eliv ingdead."></textarea>
+        <br><br>
+        <input type="submit" value="OK">
+    </form>
+</body>
+</html>
