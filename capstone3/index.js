@@ -13,8 +13,22 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static("public"));      
 
+let postsArray = [];
+postsArray[0] = {
+    section: 'Videogame',
+    postTitle: 'Brothers in Arms',
+    postDescription: 'A great war RPG you will enjoy...'
+};
+postsArray[1] = {
+    section: 'Comics',
+    postTitle: 'Spiderman',
+    postDescription: 'Peter Parker is a young man who was bite for a spider now he is strong...'
+};
+
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render('index.ejs', {
+        posts: postsArray
+    });
 });
 app.get("/comic", (req, res) => {
     res.render("comic.ejs");
@@ -25,21 +39,14 @@ app.get("/manga", (req, res) => {
 app.get("/videogame", (req, res) => {
     res.render("videogame.ejs");
 });
-app.post("/submit", (req, res) => {
-    const posts = pushPosts(req, res);
-    let section = posts[0].section;
-    let postTitle = posts[0].postTitle;
-    let postDescription = posts[0].postDescription;
-    res.render('index.ejs', {
-        category: section,
-        title: postTitle,
-        description: postDescription
-    });
+app.get("/form", (req, res) => {
+    res.render("form.ejs");
 });
-
-let postsArray = [];
-function pushPosts(req, res) {
-    console.log(req.body);
-    postsArray.push(req.body);
-    return postsArray;
-};
+app.post("/submit", (req, res) => {
+    const newPost = req.body;
+    postsArray.push(newPost);
+    res.redirect("/");
+});
+app.get("/edit", (req, res) => {
+    res.render("edit.ejs");
+});

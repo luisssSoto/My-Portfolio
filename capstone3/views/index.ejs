@@ -9,46 +9,47 @@
     <header>
         <%- include("partials/header.ejs") %>
     </header>
-
-    <form action="/submit" method="POST">
-        <input type="radio" id="comic" name="section" value="Comic">
-        <label for="comic">Comic</label>
-        <br><br>
-        <input type="radio" id="manga" name="section" value="Manga">
-        <label for="manga">Manga</label>
-        <br><br>
-        <input type="radio" id="videogame" name="section" value="Videogame">
-        <label for="videogame">Videogame</label>
-        <br><br>
-        <input type="text" name="postTitle" placeholder="Title">
-        <br><br>
-        <textarea name="postDescription" rows="10" cols="50" placeholder="
-        Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. 
-        De carne lumbering animata corpora quaeritis.
-        Summus brains sit​​, morbo vel maleficia?
-        De apocalypsi gorger omero undead survivor dictum mauris. 
-        Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.&#10;&#10;
-        Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
-        The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
-        Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
-        Nescio brains an Undead zombies. 
-        Sicut malus putrid voodoo horror.
-        Nigh tofth eliv ingdead."></textarea>
-        <br><br>
-        <input type="submit" value="OK">
-    </form>
-
-    <% if (locals.category && locals.title && locals.description) { %>
-        <h3>
-            <%= category %>
-        </h3>
-        <h3>
-            <%= title %>
-        </h3>
-        <p>
-            <%= description %>
-        </p>
-    <% } %>
+    <button id="createPost">Create New Post</button>
+    <br><br>
+    <div id="showingPostArea">
+        <ul>
+            <% posts.forEach(post => {%>
+                <% let section = post.section;%>
+                <% let postTitle = post.postTitle;%>
+                <% let postDescription = post.postDescription;%>
+                <% console.log(`section: ${section}
+                postTitle: ${postTitle}
+                postDescription: ${postDescription}`) %>
+                <li>
+                    <%= section %>
+                    <%= postTitle %>
+                    <%= postDescription %>
+                    <button class="editButton">Edit</button>
+                </li>
+                <% });%>
+        </ul>
+        <% if (locals.category && locals.title && locals.description) { %>
+            <h3>
+                <%= category %>
+            </h3>
+            <h3>
+                <%= title %>
+            </h3>
+            <p>
+                <%= description %>
+            </p>
+        <% } %>    
+    </div>
+    <script>
+        const createButton = document.getElementById("createPost");
+        createButton.addEventListener("click", function() {
+            window.location.href = "../form";
+                });
+        const editButton = document.getElementsByClassName("editButton");
+        editButton.addEventListener("click", () => {
+            window.location.href = "../edit.ejs";
+        });
+    </script>
     <footer>
         <%- include("partials/footer.ejs") %>
     </footer>
