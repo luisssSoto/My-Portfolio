@@ -12,6 +12,18 @@
     <h1>
         Edit Your Post
     </h1>
+    <form action="/submitEdit" method="POST">
+        <label for="section">Section:</label>
+        <input type="text" id="section" name="section" value="<%= post.section %>">
+        <br><br>
+        <label for="postTitle">Title:</label>
+        <input type="text" id="postTitle" name="postTitle" value="<%= post.postTitle %>">
+        <br><br>
+        <label for="postDescription">Description:</label>
+        <textarea id="postDescription" name="postDescription" rows="5" cols="50"><%= post.postDescription %></textarea>
+        <br><br>
+        <input type="submit" value="Save Changes">
+    </form>
     <footer>
         <%- include("partials/footer.ejs") %>
     </footer>
