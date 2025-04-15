@@ -20,10 +20,16 @@
                 <% console.log(`section: ${section}
                 postTitle: ${postTitle}
                 postDescription: ${postDescription}`) %>
-                <li>
-                    <%= section %>
-                    <%= postTitle %>
-                    <%= postDescription %>
+                <li class="postLi">
+                    <p>
+                        <%= section %>
+                    </p>
+                    <p>
+                        <%= postTitle %>
+                    </p>
+                    <p>
+                        <%= postDescription %>
+                    </p>
                     <button class="editButton">Edit</button>
                 </li>
                 <% });%>
@@ -45,10 +51,16 @@
         createButton.addEventListener("click", function() {
             window.location.href = "../form";
                 });
-        const editButton = document.getElementsByClassName("editButton");
-        editButton.addEventListener("click", () => {
-            window.location.href = "../edit.ejs";
-        });
+
+        const editButtons = document.getElementsByClassName("editButton");
+        const arrayButtons = Array.from(editButtons);
+        for (let i = 0; i < arrayButtons.length; i++) {
+            const btn = arrayButtons[i];
+            let postTitle = document.getElementsByClassName("postLi")[i].children[1].textContent.trim();
+            btn.addEventListener("click", () => {
+                window.location.href = `/edit?title=${encodeURIComponent(postTitle)}`;
+            });
+        };
     </script>
     <footer>
         <%- include("partials/footer.ejs") %>

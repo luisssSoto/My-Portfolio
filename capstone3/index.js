@@ -47,6 +47,15 @@ app.post("/submit", (req, res) => {
     postsArray.push(newPost);
     res.redirect("/");
 });
-app.get("/edit", (req, res) => {
-    res.render("edit.ejs");
+app.post("/edit", (req, res) => {
+    console.log(`Request body: ${req.body}`);
 });
+app.get("/edit", (req, res) => {
+    const postTitle = req.query.title;
+    const postToEdit = postsArray.find(post => post.postTitle === postTitle);
+    res.render("edit.ejs", {
+        post: postToEdit
+    });
+});
+
+// next step: figure out how to save the changes once were modified and show the modified post
